@@ -30,17 +30,17 @@ public class MemorySimulator {
             
             List<Integer> references = new ArrayList<>();
             try (BufferedReader reader = new BufferedReader(new FileReader("src/" + refFile))) {
-                reader.readLine(); // TP
-                reader.readLine(); // NF
-                reader.readLine(); // NC
-                reader.readLine(); // NR
-                reader.readLine(); // NP
+                reader.readLine(); 
+                reader.readLine(); 
+                reader.readLine();
+                reader.readLine();
+                reader.readLine(); 
                 
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
                     int pageRef = Integer.parseInt(parts[1]);
-                    if (pageRef < 100) { // Validamos que la página esté dentro del rango
+                    if (pageRef < 100) { 
                         references.add(pageRef);
                     } else {
                         System.out.println("Advertencia: Página fuera de rango ignorada - " + pageRef);
