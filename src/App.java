@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.util.concurrent.locks.*;
 
-// Clase que representa una página en la memoria virtual
 class Page {
     int pageNumber;
     boolean referenced;
@@ -19,7 +18,6 @@ class Page {
     }
 }
 
-// Clase que maneja la tabla de páginas
 class PageTable {
     private Map<Integer, Page> pages;
     
@@ -35,7 +33,6 @@ class PageTable {
     }
 }
 
-// Algoritmo de reemplazo de páginas: "No Usadas Recientemente" (NRU)
 class NRUAlgorithm {
     private List<Page> memoryFrames;
     private Lock lock;
@@ -48,7 +45,7 @@ class NRUAlgorithm {
     public void addPage(Page page) {
         lock.lock();
         try {
-            if (memoryFrames.size() >= 4) { // Simulamos que hay 4 marcos de memoria
+            if (memoryFrames.size() >= 4) { 
                 replacePage(page);
             } else {
                 memoryFrames.add(page);
@@ -68,7 +65,7 @@ class NRUAlgorithm {
     }
 }
 
-// Clase para simular la ejecución del sistema de paginación
+
 class MemorySimulatorThread extends Thread {
     private List<Integer> references;
     private NRUAlgorithm nru;
@@ -77,8 +74,8 @@ class MemorySimulatorThread extends Thread {
     private int misses = 0;
     private int timeHits = 0;
     private int timeMisses = 0;
-    private final int timeRAM = 50; // 50ns acceso RAM
-    private final int timeSWAP = 10000000; // 10ms fallo de página
+    private final int timeRAM = 50; 
+    private final int timeSWAP = 10000000; 
     
     public MemorySimulatorThread(List<Integer> references, NRUAlgorithm nru, PageTable pageTable) {
         this.references = references;
@@ -100,7 +97,7 @@ class MemorySimulatorThread extends Thread {
                 }
             }
             try {
-                Thread.sleep(1); // Simulación de ejecución cada ms
+                Thread.sleep(1); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -120,8 +117,8 @@ class ReferenceGenerator {
         BufferedImage image = ImageIO.read(file);
         int NF = image.getHeight();
         int NC = image.getWidth();
-        int NR = NF * NC * 3; // Cada píxel tiene 3 referencias (R, G, B)
-        int NP = (NF * NC * 3) / pageSize + 1; // Número de páginas virtuales necesarias
+        int NR = NF * NC * 3; 
+        int NP = (NF * NC * 3) / pageSize + 1; 
         
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/referencias.txt"));
         writer.write("TP=" + pageSize + "\n");
