@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.util.concurrent.locks.*;
 
-// Clase que representa una imagen BMP de 24 bits
 class Imagen {
     byte[] header = new byte[54];
     byte[][][] imagen;
@@ -58,7 +57,6 @@ class Imagen {
     }
 }
 
-// Clase para aplicar el filtro Sobel
 class FiltroSobel {
     Imagen imagenIn;
     Imagen imagenOut;
